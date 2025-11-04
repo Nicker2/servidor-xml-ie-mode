@@ -5,7 +5,6 @@ Este é um pequeno servidor web local feito em Python (Flask) para resolver o pr
 ## 🚀 O Problema
 1.  O Edge, por padrão, não abre arquivos XML locais (`file:///...`) com estilos .xsl corretamente.
 2.  O Modo IE do Edge resolve isso, mas não é prático adicionar cada arquivo XML manualmente à lista de sites do Modo IE.
-3.  Precisávamos de uma forma de ver os XMLs mais recentes primeiro.
 
 ## ✅ A Solução
 Este servidor local (`app.py`) cria um "site" em `http://127.0.0.1:8000` que:
