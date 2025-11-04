@@ -1,0 +1,89 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 700px; /* Aumentei um pouco a largura para caber a data */
+}
+
+h1 {
+    color: #0056b3;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+#searchInput {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+#xmlList {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* --- MUDANÇA AQUI --- */
+#xmlList li {
+    background-color: #e9ecef;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    
+    /* Adicionado para alinhar nome e data */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#xmlList li:hover {
+    background-color: #d8e0e6;
+}
+
+/* --- MUDANÇA AQUI --- */
+#xmlList li a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    display: block; 
+    
+    /* Movido de 'li' para 'a' */
+    padding: 12px 15px; 
+    
+    /* Faz o link ocupar o espaço restante */
+    flex-grow: 1; 
+    
+    /* Evita que nomes de arquivo muito grandes quebrem o layout */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#xmlList li a:hover {
+    color: #0056b3;
+}
+
+/* --- CLASSE NOVA ADICIONADA --- */
+.file-date {
+    font-size: 0.9em;  /* Tamanho de fonte um pouco menor */
+    color: #555;      /* Cor de texto mais suave */
+    padding-right: 15px; /* Espaçamento à direita */
+    white-space: nowrap; /* Impede que a data quebre em duas linhas */
+    flex-shrink: 0;  /* Impede que a data seja "espremida" */
+}
