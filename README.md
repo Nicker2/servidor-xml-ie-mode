@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🌐 Visualizador de XML Local para Modo IE
+# 🌐 Servidor Local para Visualização de Arquivos XML
 ### Solução de Renderização XSLT para Arquivos Locais
 
 <img src="https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python&logoColor=white" alt="Python Version">
