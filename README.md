@@ -1,174 +1,166 @@
 <div align="center">
 
 # 🌐 Visualizador de XML Local para Modo IE
-### Solução leve para renderização de XML + XSL local no Microsoft Edge
+### Solução de Renderização XSLT para Arquivos Locais
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue?style=for-the-badge&logo=none)
-![Python](https://img.shields.io/badge/Python-3.8%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Flask](https://img.shields.io/badge/Flask-Web_Server-000000?style=for-the-badge&logo=flask&logoColor=white)
-![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=for-the-badge)
+<img src="https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python&logoColor=white" alt="Python Version">
+<img src="https://img.shields.io/badge/Flask-Framework-black?style=for-the-badge&logo=flask&logoColor=white" alt="Flask">
+<img src="https://img.shields.io/badge/Status-Stable-success?style=for-the-badge" alt="Status">
+<img src="https://img.shields.io/badge/Focus-Productivity-orange?style=for-the-badge" alt="Focus">
+
+<br />
 
 <p align="center">
-  <a href="#-o-problema">O Problema</a> •
-  <a href="#-a-solução">A Solução</a> •
-  <a href="#-tech-stack">Tech Stack</a> •
-  <a href="#-como-usar">Como Usar</a> •
-  <a href="#-troubleshooting">Troubleshooting</a>
+  <b>Visualize arquivos XML locais com folhas de estilo (XSL) sem erros de segurança do navegador.</b><br>
+  <i>Transforme sua pasta local em um servidor web instantâneo.</i>
 </p>
 
 </div>
 
 ---
 
-## 🚀 O Problema
+## 🧐 O que é isso? (Para não técnicos)
+Sabe quando você tenta abrir um arquivo **XML** no seu computador (aqueles de notas fiscais ou relatórios médicos) e ele aparece todo "quebrado" ou como um monte de códigos, sem a formatação bonita que deveria ter?
 
-Desenvolvedores e analistas frequentemente enfrentam dificuldades ao visualizar arquivos XML locais que dependem de folhas de estilo **XSLT** (`.xsl`) nos navegadores modernos, devido a políticas de segurança rigorosas (CORS e *Local File Restrictions*).
+Isso acontece porque os navegadores modernos (Chrome, Edge) bloqueiam, por segurança, que arquivos locais carreguem seus estilos visuais.
 
-> ❌ **O Cenário Comum:** Ao tentar abrir `file:///C:/relatorio.xml` no Edge, o estilo não é aplicado e o usuário vê apenas a árvore de código crua.
->
-> ⚠️ **A Limitação do Modo IE:** Embora o "Modo IE" resolva a renderização, adicionar manualmente o caminho de cada arquivo local à lista de exceções é inviável e improdutivo.
+**Este projeto resolve isso:** Ele cria um pequeno "site interno" no seu computador. Ao abrir os arquivos através dele, o navegador entende que é seguro e mostra o documento **perfeitamente formatado**.
 
-## ✅ A Solução
-
-Este projeto implementa um servidor web local (`app.py`) que atua como um *middleware* de visualização. Ele cria um ambiente controlado em `localhost` para servir os arquivos corretamente.
-
-**Principais Funcionalidades:**
-
-| Feature | Descrição |
-| :--- | :--- |
-| **🛡️ 100% Local** | Roda em `127.0.0.1`. Nenhuma informação sai da sua máquina. |
-| **📂 Listagem Dinâmica** | Varre o diretório e lista automaticamente todos os arquivos `.xml`. |
-| **📅 Ordenação Inteligente** | Exibe os arquivos mais recentes no topo (baseado na data de modificação). |
-| **🎨 Renderização Full** | Serve corretamente os arquivos `.xsl` vinculados, permitindo visualização perfeita. |
-| **⚡ Configuração Única** | Basta adicionar o `localhost` ao Modo IE uma única vez. |
+> **Nota Importante:** Com esta implementação, **você geralmente NÃO precisa mais usar o "Modo Internet Explorer"** ou configurações complexas de compatibilidade. O servidor contorna a restrição de segurança original (`CORS/file://`), permitindo que o XML abra normalmente no Edge ou Chrome padrão.
 
 ---
 
-## 🛠 Tech Stack
+## ⚡ O Problema vs. A Solução
 
-A aplicação foi construída utilizando tecnologias robustas e leves:
-
-| Tecnologia | Uso no Projeto |
+| Cenário | Comportamento |
 | :--- | :--- |
-| <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" /> | Lógica de Backend e manipulação de arquivos. |
-| <img src="https://img.shields.io/badge/Flask-000000?style=flat-square&logo=flask&logoColor=white" /> | Micro-framework para servir a aplicação web. |
-| <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" /> | Estrutura da interface de listagem (`index.html`). |
-| <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" /> | Estilização da interface (`style.css`). |
+| **Padrão (Sem este App)** | O Edge bloqueia o XSL ao abrir via `file:///`. O XML carrega sem estilo ou exibe tela em branco. |
+| **Modo IE (Manual)** | Funciona, mas exige adicionar *cada arquivo* ou pasta manualmente à lista de exceções. Trabalhoso e pouco prático. |
+| **Com XML Render Server** | ✅ **Automático.** Transforma o acesso em `http://`, permitindo renderização perfeita em navegadores modernos sem configurações extras. |
 
 ---
 
-## ⚙️ Como Usar
+## 🛠️ Stack Tecnológica
 
-Siga os passos abaixo para configurar o ambiente.
+A aplicação foi construída visando leveza e facilidade de manutenção.
 
-### 1. Pré-requisitos
-Certifique-se de ter o Python instalado e instale o Flask:
+| Tecnologia | Função | Badge |
+| :--- | :--- | :--- |
+| **Python** | Linguagem Core | ![Python](https://img.shields.io/badge/python-3670A0?style=flat-square&logo=python&logoColor=white) |
+| **Flask** | Servidor Web | ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=flat-square&logo=flask&logoColor=white) |
+| **HTML5** | Estrutura da Interface | ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=flat-square&logo=html5&logoColor=white) |
+| **CSS3** | Estilização da Lista | ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=flat-square&logo=css3&logoColor=white) |
+
+---
+
+## 🚀 Como Usar
+
+Siga os passos abaixo para iniciar seu visualizador em menos de 2 minutos.
+
+### 1. Instalação e Preparação
+
+Certifique-se de ter o [Python](https://www.python.org/) instalado. Em seguida, instale a biblioteca Flask:
 
 ```bash
 pip install Flask
 
 ```
 
-### 2. Estrutura de Diretórios
+### 2. Organização dos Arquivos
 
-Mantenha a organização dos arquivos conforme a árvore abaixo para garantir o funcionamento do `send_from_directory`:
+Crie uma pasta para o projeto e organize seus arquivos conforme a estrutura abaixo. O script listará automaticamente qualquer `.xml` colocado na raiz.
 
 ```text
 /Visualizador-XML/
-├── app.py                # Script do Servidor (Lógica principal)
-├── arquivo_exemplo.xml   # Seus arquivos XML
-├── estilo.xsl            # Suas folhas de estilo
+├── app.py                # O script do servidor (código fornecido)
+├── nota_fiscal.xml       # Seus arquivos XML
+├── relatorio.xml
+├── estilo.xsl            # Seu arquivo de estilo (obrigatório para o XML)
 ├── templates/
-│   └── index.html        # Frontend da lista de arquivos
+│   └── index.html        # Interface de listagem
 └── static/
-    └── style.css         # Estilos da lista
+    └── style.css         # Estilo da interface de listagem
 
 ```
 
-### 3. Executando o Servidor
+### 3. Rodando a Aplicação
 
-No terminal, navegue até a pasta do projeto e execute:
+No seu terminal (CMD ou PowerShell), navegue até a pasta e execute:
 
 ```bash
 python app.py
 
 ```
 
-*O servidor iniciará em `http://127.0.0.1:8000`.*
+Você verá uma mensagem indicando que o servidor está rodando (geralmente em `Running on http://127.0.0.1:8000`).
 
-### 4. Configuração do Edge (Passo Único)
+### 4. Acessando
 
-Para que a renderização do XSL funcione, precisamos instruir o Edge a tratar este endereço como "Legacy":
-
-1. Abra o Edge e vá para `Configurações` > `Navegador padrão`.
-2. Na seção **"Páginas do modo Internet Explorer"**, clique em **Adicionar**.
-3. Insira a URL: `http://127.0.0.1:8000`
-4. Clique em **Adicionar** novamente.
-
-> 💡 **Pronto!** Agora, basta acessar o link no navegador. O ícone do Internet Explorer aparecerá na barra de endereços, indicando que o modo de compatibilidade está ativo.
+1. Abra seu navegador (Edge, Chrome, Firefox).
+2. Acesse o endereço: **`http://127.0.0.1:8000`**
+3. Clique no arquivo desejado na lista.
 
 ---
 
-## 🧩 Detalhes da Implementação
+## ⚙️ Detalhes Técnicos e Code Snippets
 
-Para curiosos ou desenvolvedores que desejam entender a lógica de segurança aplicada:
+O coração da aplicação reside no tratamento de rotas do Flask para servir tanto o XML quanto o XSL corretamente.
 
 <details>
-<summary><b>🔍 Clique para ver a lógica do Backend (app.py)</b></summary>
+<summary><b>🔍 Ver Lógica de Ordenação (Python)</b></summary>
 
+O sistema prioriza automaticamente os arquivos mais recentes para facilitar o fluxo de trabalho diário:
 
+```python
+# Trecho de app.py
+@app.route('/')
+def index():
+    # ... código de listagem ...
+    
+    # Ordena: Mais recente primeiro
+    sorted_file_details = sorted(
+        file_details,
+        key=lambda item: item['raw_time'],
+        reverse=True
+    )
+    return render_template('index.html', files_list=sorted_file_details)
 
+```
 
-O script possui uma validação de segurança para impedir que arquivos sensíveis do sistema sejam servidos. Apenas `.xml` e `.xsl` são permitidos na rota dinâmica.
+</details>
+
+<details>
+<summary><b>🛡️ Ver Lógica de Segurança e Rotas</b></summary>
+
+Para garantir segurança, o servidor entrega apenas extensões permitidas na rota dinâmica:
 
 ```python
 @app.route('/<filename>')
 def serve_xml(filename):
-    # Security Check: Permite apenas XML e XSL
+    # Permite apenas .xml e .xsl
     if filename.endswith('.xml') or filename.endswith('.xsl'):
         return send_from_directory(XML_FOLDER, filename)
     
-    # Bloqueia qualquer outra extensão
     return "Arquivo não encontrado ou tipo não permitido.", 404
 
 ```
-
-A listagem de arquivos utiliza `os.path.getctime` para capturar a data de criação e ordenar a lista de forma decrescente:
-
-```python
-sorted_file_details = sorted(
-    file_details,
-    key=lambda item: item['raw_time'],
-    reverse=True # Mais recentes primeiro
-)
-
-```
-
-</details>
-
-<details>
-<summary><b>🛠 Troubleshooting (Problemas Comuns)</b></summary>
-
-| Erro | Possível Causa | Solução |
-| --- | --- | --- |
-| **Erro 404 ao abrir arquivo** | Nome do arquivo incorreto ou extensão não suportada. | Verifique se o arquivo termina estritamente em `.xml` ou `.xsl`. |
-| **Estilo não carrega** | Caminho no XML está errado. | Certifique-se de que a tag `<?xml-stylesheet type="text/xsl" href="estilo.xsl"?>` aponta para o arquivo correto na mesma pasta. |
-| **Porta em uso** | Porta 8000 ocupada. | Edite a linha `app.run(port=8000)` no `app.py` para outra porta (ex: 8080) e atualize a configuração no Edge. |
 
 </details>
 
 ---
 
+## 🤝 Contribuição
+
+Contribuições são bem-vindas! Se você tiver ideias para melhorar a interface de listagem ou adicionar suporte a novos formatos:
+
+1. Faça um Fork do projeto
+2. Crie uma Branch para sua Feature (`git checkout -b feature/NovaFeature`)
+3. Commit suas mudanças (`git commit -m 'Adiciona NovaFeature'`)
+4. Push para a Branch (`git push origin feature/NovaFeature`)
+5. Abra um Pull Request
+
+---
+
 <div align="center">
-
-**Desenvolvido para facilitar a rotina de desenvolvimento e análise de dados.**
-
-
-
-
-
-<sub>Livre para uso e modificação.</sub>
-
+<sub>Desenvolvido para agilizar processos em ambientes hospitalares e corporativos.</sub>
 </div>
-
-
