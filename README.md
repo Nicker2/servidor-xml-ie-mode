@@ -20,7 +20,7 @@
 ---
 
 ## 🧐 O que é isso? (Para não técnicos)
-Sabe quando você tenta abrir um arquivo **XML** no seu computador (aqueles de notas fiscais ou relatórios médicos) e ele aparece todo "quebrado" ou como um monte de códigos, sem a formatação bonita que deveria ter?
+Sabe quando você tenta abrir um arquivo **XML** no seu computador (aqueles de notas fiscais ou relatórios médicos) e ele abre em branco ou aparece todo "quebrado" ou então como um monte de códigos, sem a formatação bonita que deveria ter?
 
 Isso acontece porque os navegadores modernos (Chrome, Edge) bloqueiam, por segurança, que arquivos locais carreguem seus estilos visuais.
 
