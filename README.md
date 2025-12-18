@@ -35,8 +35,8 @@ Isso acontece porque os navegadores modernos (Chrome, Edge) bloqueiam, por segur
 | Cenário | Comportamento |
 | :--- | :--- |
 | **Padrão (Sem este App)** | O Edge bloqueia o XSL ao abrir via `file:///`. O XML carrega sem estilo ou exibe tela em branco. |
-| **Modo IE (Manual)** | Funciona, mas exige adicionar *cada arquivo* ou pasta manualmente à lista de exceções. Trabalhoso e pouco prático. |
-| **Com este servidor** | ✅ **Automático.** Transforma o acesso em `http://`, permitindo renderização perfeita em navegadores modernos sem configurações extras. |
+| **Modo IE (Manual)** | Funciona, mas exige adicionar *cada arquivo* manualmente à lista de exceções. Trabalhoso e pouco prático. |
+| **Com este App** | ✅ **Automático.** Transforma o acesso em `http://`, permitindo renderização perfeita em navegadores modernos sem configurações extras. |
 
 ---
 
