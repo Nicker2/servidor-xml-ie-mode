@@ -1,166 +1,196 @@
-<div align="center">
-
-# 🌐 Leitor de XML
-### Solução de Renderização XSLT para Arquivos Locais
-
-<img src="https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python&logoColor=white" alt="Python Version">
-<img src="https://img.shields.io/badge/Flask-Framework-black?style=for-the-badge&logo=flask&logoColor=white" alt="Flask">
-<img src="https://img.shields.io/badge/Status-Stable-success?style=for-the-badge" alt="Status">
-<img src="https://img.shields.io/badge/Focus-Productivity-orange?style=for-the-badge" alt="Focus">
-
-<br />
-
 <p align="center">
-  <b>Visualize arquivos XML locais com folhas de estilo (XSL) sem erros de segurança do navegador.</b><br>
-  <i>Transforme sua pasta local em um servidor web instantâneo.</i>
+  <img src="assets/banner.svg" alt="Leitor de XML" width="100%">
 </p>
 
-</div>
+<h1 align="center">🌐 Leitor de XML</h1>
+
+<p align="center">
+  <b>O XML abre formatado, sem tela em branco e sem Modo Internet Explorer.</b><br>
+  Um servidorzinho local que entrega seus arquivos <code>.xml</code> e a folha de estilo <code>.xsl</code> pelo endereço <code>http://127.0.0.1:8000</code>, e o Edge ou o Chrome passam a mostrar o documento do jeito certo.
+</p>
+
+<p align="center">
+  <img alt="Python 3" src="https://img.shields.io/badge/Python-3.x-3776AB?logo=python&logoColor=white">
+  <img alt="Flask" src="https://img.shields.io/badge/Flask-servidor%20local-000000?logo=flask&logoColor=white">
+  <img alt="Edge | Chrome" src="https://img.shields.io/badge/navegador-Edge%20%7C%20Chrome-0078D7?logo=microsoftedge&logoColor=white">
+  <img alt="Último commit" src="https://img.shields.io/github/last-commit/Nicker2/servidor-xml-ie-mode?label=%C3%BAltima%20atualiza%C3%A7%C3%A3o">
+</p>
+
+<p align="center">
+  <a href="#-instalação">📦 Instalar</a>
+  &nbsp;·&nbsp;
+  <a href="#-como-usar">🚀 Usar</a>
+  &nbsp;·&nbsp;
+  <a href="#-solução-de-problemas">🩹 Problemas</a>
+</p>
 
 ---
 
-## 🧐 O que é isso? (Para não técnicos)
-Sabe quando você tenta abrir um arquivo **XML** no seu computador (aqueles de notas fiscais ou relatórios médicos) e ele abre em branco ou aparece todo "quebrado" ou então como um monte de códigos, sem a formatação bonita que deveria ter?
+## 📑 Sumário
 
-Isso acontece porque os navegadores modernos (Chrome, Edge) bloqueiam, por segurança, que arquivos locais carreguem seus estilos visuais.
-
-**Este projeto resolve isso:** Ele cria um pequeno "site interno" no seu computador. Ao abrir os arquivos através dele, o navegador entende que é seguro e mostra o documento **perfeitamente formatado**.
-
-> **Nota Importante:** Com esta implementação, **você geralmente NÃO precisa mais usar o "Modo Internet Explorer"** ou configurações complexas de compatibilidade. O servidor contorna a restrição de segurança original (`CORS/file://`), permitindo que o XML abra normalmente no Edge ou Chrome padrão.
+- [🧐 O problema](#-o-problema)
+- [✨ O que faz](#-o-que-faz)
+- [🧭 Como funciona](#-como-funciona)
+- [📋 Requisitos](#-requisitos)
+- [📦 Instalação](#-instalação)
+- [🚀 Como usar](#-como-usar)
+- [🩹 Solução de problemas](#-solução-de-problemas)
+- [❓ Perguntas frequentes](#-perguntas-frequentes)
+- [🧰 Para quem mantém](#-para-quem-mantém)
+- [📄 Licença e autor](#-licença-e-autor)
 
 ---
 
-## ⚡ O Problema vs. A Solução
+## 🧐 O problema
 
-| Cenário | Comportamento |
+Alguns sistemas e equipamentos salvam relatórios em **XML** que dependem de uma folha de estilo **XSL** para aparecerem formatados. Aberto com duplo clique (`file:///...`), o Edge e o Chrome **bloqueiam a folha de estilo** por segurança, e o arquivo aparece em branco ou como um monte de código.
+
+| Cenário | O que acontece |
 | :--- | :--- |
-| **Padrão (Sem este App)** | O Edge bloqueia o XSL ao abrir via `file:///`. O XML carrega sem estilo ou exibe tela em branco. |
-| **Modo IE (Manual)** | Funciona, mas exige adicionar *cada arquivo* manualmente à lista de exceções. Trabalhoso e pouco prático. |
-| **Com este App** | ✅ **Automático.** Transforma o acesso em `http://`, permitindo renderização perfeita em navegadores modernos sem configurações extras. |
+| 📂 **Duplo clique no XML** | O navegador bloqueia o XSL. Tela em branco ou código cru. |
+| 🧓 **Modo Internet Explorer** | Funciona, mas cada arquivo precisa entrar na lista de exceções do Edge. Trabalhoso. |
+| ✅ **Com o Leitor de XML** | O arquivo é aberto por `http://127.0.0.1:8000`. O navegador carrega o XSL normalmente e mostra o documento formatado. |
 
 ---
 
-## 🛠️ Stack Tecnológica
+## ✨ O que faz
 
-A aplicação foi construída visando leveza e facilidade de manutenção.
-
-| Tecnologia | Função | Badge |
-| :--- | :--- | :--- |
-| **Python** | Linguagem Core | ![Python](https://img.shields.io/badge/python-3670A0?style=flat-square&logo=python&logoColor=white) |
-| **Flask** | Servidor Web | ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=flat-square&logo=flask&logoColor=white) |
-| **HTML5** | Estrutura da Interface | ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=flat-square&logo=html5&logoColor=white) |
-| **CSS3** | Estilização da Lista | ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=flat-square&logo=css3&logoColor=white) |
+| | Recurso | Em poucas palavras |
+| :---: | :--- | :--- |
+| 📋 | **Lista dos XML** | Página inicial com todos os `.xml` da pasta do programa, **mais recentes primeiro**, com data e hora. |
+| 🔎 | **Busca instantânea** | Caixa de busca que filtra a lista pelo nome enquanto você digita. |
+| 🎨 | **XSL carregado** | Entrega os `.xml` e os `.xsl` pelo mesmo endereço, então a folha de estilo referenciada no XML é aplicada. |
+| 🔒 | **Só arquivos permitidos** | Pela rota de arquivos, só saem `.xml` e `.xsl`. Qualquer outra extensão recebe "tipo não permitido". |
+| 🏠 | **Só neste computador** | Escuta apenas em `127.0.0.1`: ninguém da rede acessa. |
 
 ---
 
-## 🚀 Como Usar
+## 🧭 Como funciona
 
-Siga os passos abaixo para iniciar seu visualizador em menos de 2 minutos.
-
-### 1. Instalação e Preparação
-
-Certifique-se de ter o [Python](https://www.python.org/) instalado. Em seguida, instale a biblioteca Flask:
-
-```bash
-pip install Flask
-
+```mermaid
+sequenceDiagram
+    participant U as 👤 Você
+    participant N as 🌐 Edge / Chrome
+    participant S as 🐍 app.py (Flask)
+    participant P as 📁 Pasta do app.py
+    U->>N: Abre http://127.0.0.1:8000
+    N->>S: GET /
+    S->>P: Lista os .xml (mais recentes primeiro)
+    S-->>N: Página com a lista e a busca
+    U->>N: Clica em relatorio.xml
+    N->>S: GET /relatorio.xml
+    S-->>N: XML (que aponta para estilo.xsl)
+    N->>S: GET /estilo.xsl
+    S-->>N: XSL
+    N-->>U: Documento formatado ✅
 ```
 
-### 2. Organização dos Arquivos
+---
 
-Crie uma pasta para o projeto e organize seus arquivos conforme a estrutura abaixo. O script listará automaticamente qualquer `.xml` colocado na raiz.
+## 📋 Requisitos
+
+| | Item | Observação |
+| :---: | :--- | :--- |
+| 🐍 | **Python 3** | Com o `pip`. |
+| 🧪 | **Flask** | `pip install Flask`. |
+| 🌐 | **Navegador moderno** | Edge, Chrome ou Firefox. |
+
+---
+
+## 📦 Instalação
+
+```bash
+git clone https://github.com/Nicker2/servidor-xml-ie-mode.git
+cd servidor-xml-ie-mode
+pip install Flask
+```
+
+Coloque os arquivos **na mesma pasta do `app.py`**:
 
 ```text
-/Visualizador-XML/
-├── app.py                # O script do servidor (código fornecido)
-├── nota_fiscal.xml       # Seus arquivos XML
-├── relatorio.xml
-├── estilo.xsl            # Seu arquivo de estilo (obrigatório para o XML)
-├── templates/
-│   └── index.html        # Interface de listagem
-└── static/
-    └── style.css         # Estilo da interface de listagem
-
+📁 servidor-xml-ie-mode
+   ├── app.py               ← o servidor
+   ├── relatorio_01.xml     ← seus XML
+   ├── relatorio_02.xml
+   ├── estilo.xsl           ← a folha de estilo que os XML usam
+   ├── templates/
+   │   └── index.html       ← página da lista
+   └── static/
+       └── style.css        ← visual da lista
 ```
-
-### 3. Rodando a Aplicação
-
-No seu terminal (CMD ou PowerShell), navegue até a pasta e execute:
-
-```bash
-python app.py
-
-```
-
-Você verá uma mensagem indicando que o servidor está rodando (geralmente em `Running on http://127.0.0.1:8000`).
-
-### 4. Acessando
-
-1. Abra seu navegador (Edge, Chrome, Firefox).
-2. Acesse o endereço: **`http://127.0.0.1:8000`**
-3. Clique no arquivo desejado na lista.
 
 ---
 
-## ⚙️ Detalhes Técnicos e Code Snippets
+## 🚀 Como usar
 
-O coração da aplicação reside no tratamento de rotas do Flask para servir tanto o XML quanto o XSL corretamente.
+1. Na pasta do projeto, rode:
+
+   ```bash
+   python app.py
+   ```
+
+2. Espere aparecer `Running on http://127.0.0.1:8000`.
+3. Abra **<http://127.0.0.1:8000>** no navegador.
+4. Use a busca, se quiser, e clique no arquivo. Ele abre formatado.
+
+Deixe a janela do console aberta enquanto usa. Para parar o servidor, pressione **Ctrl+C** nela.
+
+> [!TIP]
+> Novos XML colocados na pasta aparecem ao recarregar a página (F5). Não é preciso reiniciar o servidor.
+
+---
+
+## 🩹 Solução de problemas
+
+| Sintoma | O que fazer |
+| :--- | :--- |
+| 📄 O XML abre sem formatação | Confira se o `.xsl` está **na mesma pasta** e com o **mesmo nome** que aparece na linha `<?xml-stylesheet ... href="..."?>` do XML. |
+| 🚫 "Arquivo não encontrado ou tipo não permitido" | Só `.xml` e `.xsl` são entregues, e o nome precisa terminar exatamente assim (minúsculas). |
+| 🙈 O arquivo não aparece na lista | A lista mostra só os `.xml` da pasta do `app.py`, sem subpastas. Mova o arquivo para lá e aperte F5. |
+| 🔌 "Não é possível acessar esse site" | O servidor não está rodando. Abra o console e rode `python app.py` de novo. |
+| ⛔ Porta 8000 ocupada | Outro programa usa a porta. Feche-o ou troque `port=8000` no fim do `app.py` (e use o novo número no endereço). |
+| 🐍 `ModuleNotFoundError: No module named 'flask'` | Rode `pip install Flask`. |
+
+---
+
+## ❓ Perguntas frequentes
 
 <details>
-<summary><b>🔍 Ver Lógica de Ordenação (Python)</b></summary>
+<summary><b>Preciso desligar a segurança do navegador?</b></summary>
 
-O sistema prioriza automaticamente os arquivos mais recentes para facilitar o fluxo de trabalho diário:
-
-```python
-# Trecho de app.py
-@app.route('/')
-def index():
-    # ... código de listagem ...
-    
-    # Ordena: Mais recente primeiro
-    sorted_file_details = sorted(
-        file_details,
-        key=lambda item: item['raw_time'],
-        reverse=True
-    )
-    return render_template('index.html', files_list=sorted_file_details)
-
-```
-
+Não. O navegador só bloqueia folhas de estilo de arquivos abertos direto do disco. Pelo endereço `http://127.0.0.1:8000`, ele trata o XML como uma página normal.
 </details>
 
 <details>
-<summary><b>🛡️ Ver Lógica de Segurança e Rotas</b></summary>
+<summary><b>Outras pessoas da rede conseguem ver meus arquivos?</b></summary>
 
-Para garantir segurança, o servidor entrega apenas extensões permitidas na rota dinâmica:
+Não. O servidor escuta só em `127.0.0.1`, que é o próprio computador. Não troque esse endereço: o servidor roda com o modo de depuração do Flask ligado (veja [docs/AVANCADO.md](docs/AVANCADO.md#segurança)).
+</details>
 
-```python
-@app.route('/<filename>')
-def serve_xml(filename):
-    # Permite apenas .xml e .xsl
-    if filename.endswith('.xml') or filename.endswith('.xsl'):
-        return send_from_directory(XML_FOLDER, filename)
-    
-    return "Arquivo não encontrado ou tipo não permitido.", 404
+<details>
+<summary><b>A data da lista é a de criação ou a de modificação?</b></summary>
 
-```
-
+No Windows, é a **data de criação** do arquivo na pasta. Um XML copiado hoje aparece com a data de hoje, no topo da lista.
 </details>
 
 ---
 
-## 🤝 Contribuição
+## 🧰 Para quem mantém
 
-Contribuições são bem-vindas! Se você tiver ideias para melhorar a interface de listagem ou adicionar suporte a novos formatos:
+| Documento | Conteúdo |
+| :--- | :--- |
+| 📘 [docs/AVANCADO.md](docs/AVANCADO.md) | Rotas do Flask, ordenação, segurança e personalização. |
+| 📜 [docs/HISTORICO.md](docs/HISTORICO.md) | Histórico de alterações. |
 
-1. Faça um Fork do projeto
-2. Crie uma Branch para sua Feature (`git checkout -b feature/NovaFeature`)
-3. Commit suas mudanças (`git commit -m 'Adiciona NovaFeature'`)
-4. Push para a Branch (`git push origin feature/NovaFeature`)
-5. Abra um Pull Request
+Contribuições são bem-vindas: faça um **fork**, crie uma branch, faça as alterações e abra um **Pull Request** explicando o que mudou.
+
+> [!CAUTION]
+> Este repositório é **público**. Não envie XML reais de pacientes ou de clientes, nem para teste.
 
 ---
 
-<div align="center">
-<sub>Desenvolvido para agilizar processos em ambientes hospitalares e corporativos.</sub>
-</div>
+## 📄 Licença e autor
+
+Este repositório ainda não tem arquivo de licença.
+
+Criado por **Nicolas Bonza Cavalari Borges**.
